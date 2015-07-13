@@ -4,6 +4,7 @@ Javascript(jQuery) + PHP で実装されています．
 
 ## 機能
 - Webページのアクセス数をカウントできます．
+- 「PV数」をカウントします．「同一IPはカウントしない」等の機能はありません．
 - 累計，今日，昨日のアクセス数を表示することができます．
 - 過去の日計アクセス数の保存機能があります．
 - Ajax を利用しているので，ページがキャッシュされていてもちゃんとカウントしてくれます．
@@ -67,7 +68,7 @@ define('LOG_FILE', DOCUMENT_ROOT . '/ajax-counter/dat/log.dat'); // ログ
 もし `counter` というクラス名を既にCSSなど別の場所で使用している場合は，本スクリプトの `counter` クラスとバッティングしてしまいます．  
 その場合は以下の部分を書き換えて下さい．
 
-`counter.js` の7行目の `.counter` を別のクラス名に変更する．
+`counter.js` の8行目の `.counter` を別のクラス名に変更する．
 ```javascript
 jQuery(".ajax-counter").append('累計&ensp;'+res.total+'&ensp;今日&ensp;'+res.today+'&ensp;昨日&ensp;'+res.yesterday);
 ```
@@ -97,7 +98,7 @@ Webページに追加するコードの `.counter` も↑で変更したのと�
 `counter.php` は Ajax による呼び出し以外に対してはエラーを吐く仕様となっています．
 
 ### アクセス数の表示フォーマット
-`counter.js` の7行目の `append()` 内を書き換えることで，自由に変更することができます．
+`counter.js` の8行目の `append()` 内を書き換えることで，自由に変更することができます．
 ```javascript
 jQuery(".ajax-counter").append('累計&ensp;'+res.total+'&ensp;今日&ensp;'+res.today+'&ensp;昨日&ensp;'+res.yesterday);
 ```
@@ -116,3 +117,11 @@ jQuery(".ajax-counter").append('累計&ensp;'+res.total+'&ensp;今日&ensp;'+res
 日付,日計アクセス数
 ```
 下に行くほど新しい日付のアクセス数です．
+
+## 変更履歴
+
+### Ver 1.0.0
+初版公開．
+
+### Ver 1.0.1
+Ajax の呼び出しをキャッシュしないよう修正．
